@@ -75,6 +75,21 @@
       }
     </style>
 
-    <script></script>
+    <script>
+      const inputs = document.querySelectorAll(".controls input");
+
+      function handleUpdate() {
+        const suffix = this.dataset.sizing || ""; //empty string for values that do not have a suffix, otherwise undefinded would be returned
+        document.documentElement.style.setProperty(
+          `--${this.name}`,
+          this.value + suffix
+        );
+      }
+
+      inputs.forEach((input) => input.addEventListener("change", handleUpdate));
+      inputs.forEach((input) =>
+        input.addEventListener("mousemove", handleUpdate)
+      ); //changes value while mouse is moving
+    </script>
   </body>
 </html>
